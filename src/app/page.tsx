@@ -53,7 +53,7 @@ export default function SearchPokemon() {
             value={name}
             onChange={(e) => setName(e.target.value)}
             placeholder="Search Pokémon"
-            className="py-4 px-6 rounded-full w-full shadow-inner dark:shadow-neutral-700 bg-white dark:bg-neutral-900 text-lg text-black dark:text-white"
+            className="py-4 px-6 rounded-full w-full shadow-inner dark:shadow-neutral-700 bg-neutral-100 dark:bg-neutral-900 text-lg text-black dark:text-white"
           />
           {name && (
             <button
