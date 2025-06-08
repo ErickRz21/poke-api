@@ -1,29 +1,17 @@
 import Image from "next/image";
 import typeColors from "@/utils/typeColors";
 import useInView from "@/hooks/useInView";
+import type { Pokemon } from "@/types/pokemon";
 
 type PokemonCardProps = {
-  id: number;
-  name: string;
-  sprites: { front_default: string };
-  types: {
-    slot: number;
-    type: {
-      name: string;
-      url: string;
-    };
-  }[];
+  pokemon: Pokemon;
 };
 
-export default function PokemonCard({
-  id,
-  name,
-  sprites,
-  types,
-}: PokemonCardProps) {
+export default function PokemonCard({ pokemon }: PokemonCardProps) {
+  const { id, name, sprites } = pokemon;
   const { ref, isVisible } = useInView({ threshold: 1 });
 
-  const typeBadges = types.map((t) => {
+  const typeBadges = pokemon.types.map((t) => {
     const typeName = t.type.name;
     const colorClass =
       typeColors[typeName] ||

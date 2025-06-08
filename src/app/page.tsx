@@ -4,21 +4,7 @@ import PokemonCard from "@/components/PokemonCard";
 import UpButton from "@/components/UpButton";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
-
-type Pokemon = {
-  id: number;
-  name: string;
-  sprites: {
-    front_default: string;
-  };
-  types: {
-    slot: number;
-    type: {
-      name: string;
-      url: string;
-    };
-  }[];
-};
+import type { Pokemon } from "@/types/pokemon";
 
 export default function SearchPokemon() {
   const [name, setName] = useState("");
@@ -73,13 +59,7 @@ export default function SearchPokemon() {
 
       <section className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 m-5 md:m-10">
         {filteredPokemons.map((pokemon) => (
-          <PokemonCard
-            id={pokemon.id}
-            key={pokemon.name}
-            name={pokemon.name}
-            sprites={pokemon.sprites}
-            types={pokemon.types}
-          />
+          <PokemonCard key={pokemon.name} pokemon={pokemon} />
         ))}
       </section>
       {/* UpButton */}
