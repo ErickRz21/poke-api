@@ -17,7 +17,7 @@ export default function SearchPokemon() {
 
   useEffect(() => {
     const fetchInitialPokemons = async () => {
-      const res = await fetch("https://pokeapi.co/api/v2/pokemon?limit=151");
+      const res = await fetch("https://pokeapi.co/api/v2/pokemon?limit=1000");
       const data = await res.json();
       const results = data.results;
 
