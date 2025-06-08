@@ -27,10 +27,12 @@ export function usePokemons(limit = 1000) {
         );
 
         setPokemons(detailedData);
-      } catch (err: any) {
-        setError(err.message);
-      } finally {
-        setLoading(false);
+        } catch (err: unknown) {
+        if (err instanceof Error) {
+          setError(err.message);
+        } else {
+          setError(String(err));
+        }
       }
     };
 
