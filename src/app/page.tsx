@@ -1,34 +1,16 @@
 "use client";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import PokemonCard from "@/components/PokemonCard";
 import UpButton from "@/components/UpButton";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
-import type { Pokemon } from "@/types/pokemon";
+import { usePokemons } from "@/hooks/usePokemons";
 
 export default function SearchPokemon() {
   const [name, setName] = useState("");
-  const [pokemons, setPokemons] = useState<Pokemon[]>([]);
+  const { pokemons, loading, error } = usePokemons(1000);
 
-  useEffect(() => {
-    const fetchInitialPokemons = async () => {
-      const res = await fetch("https://pokeapi.co/api/v2/pokemon?limit=1000");
-      const data = await res.json();
-      const results = data.results;
-
-      const detailedData = await Promise.all(
-        results.map(async (poke: { name: string; url: string }) => {
-          const res = await fetch(poke.url);
-          return await res.json();
-        }),
-      );
-
-      setPokemons(detailedData);
-    };
-
-    fetchInitialPokemons();
-  }, []);
-
+  // Filter pokemons based on the search name
   const filteredPokemons = name
     ? pokemons.filter((p) => p.name.toLowerCase().includes(name.toLowerCase()))
     : pokemons;
@@ -58,10 +40,15 @@ export default function SearchPokemon() {
       </section>
 
       <section className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 m-5 md:m-10">
-        {filteredPokemons.map((pokemon) => (
-          <PokemonCard key={pokemon.name} pokemon={pokemon} />
-        ))}
+        {loading && <p>Loading Pokémon...</p>}
+        {error && <p>Error: {error}</p>}
+        {!loading &&
+          !error &&
+          filteredPokemons.map((pokemon) => (
+            <PokemonCard key={pokemon.name} pokemon={pokemon} />
+          ))}
       </section>
+
       {/* UpButton */}
       <section className="fixed bottom-5 right-5">
         <UpButton />
