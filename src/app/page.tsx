@@ -1,8 +1,6 @@
 "use client";
 import { useEffect, useState } from "react";
 import PokemonCard from "@/components/PokemonCard";
-import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
-import {faArrowUp} from '@fortawesome/free-solid-svg-icons'
 import UpButton from "@/components/UpButton";
 
 type Pokemon = {
