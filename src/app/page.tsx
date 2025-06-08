@@ -68,19 +68,7 @@ export default function SearchPokemon() {
         </div>
       </section>
 
-      <section
-        className={`grid gap-4 m-5 md:m-10 ${
-          filteredPokemons.length === 1
-            ? "grid-cols-1"
-            : filteredPokemons.length === 2
-            ? "grid-cols-2"
-            : filteredPokemons.length === 3
-            ? "grid-cols-3"
-            : filteredPokemons.length === 4
-            ? "grid-cols-4"
-            : "grid-cols-5"
-        }`}
-      >
+      <section className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 m-5 md:m-10">
         {filteredPokemons.map((pokemon) => (
           <PokemonCard
             id={pokemon.id}
