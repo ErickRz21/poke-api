@@ -1,6 +1,9 @@
 "use client";
 import { useEffect, useState } from "react";
 import PokemonCard from "@/components/PokemonCard";
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
+import {faArrowUp} from '@fortawesome/free-solid-svg-icons'
+import UpButton from "@/components/UpButton";
 
 type Pokemon = {
   id: number;
@@ -81,13 +84,7 @@ export default function SearchPokemon() {
       </section>
       {/* UpButton */}
       <section className="fixed bottom-5 right-5">
-        <button
-          onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-          className="bg-indigo-500 text-white p-5 text-lg rounded-3xl shadow-lg hover:bg-indigo-600 duration-200"
-          aria-label="Scroll to top"
-        >
-          Top
-        </button>
+        <UpButton />
       </section>
     </main>
   );
