@@ -21,7 +21,7 @@ export default function PokemonCard({
   sprites,
   types,
 }: PokemonCardProps) {
-  const { ref, isVisible } = useInView({ threshold: 0.5 });
+  const { ref, isVisible } = useInView({ threshold: 1 });
 
   const typeBadges = types.map((t) => {
     const typeName = t.type.name;
@@ -41,7 +41,7 @@ export default function PokemonCard({
   return (
     <div
       ref={ref}
-      className="style group p-4 rounded-4xl text-center cursor-pointer min-h-[180px]"
+      className="style group p-2 rounded-4xl text-center cursor-pointer min-h-[180px]"
     >
       {!isVisible ? (
         <div className="animate-pulse">
