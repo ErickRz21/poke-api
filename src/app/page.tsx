@@ -1,43 +1,95 @@
+"use client";
 import Image from "next/image";
-import "./globals.css"
+import { useEffect, useState } from "react";
 
-// app/pokemon/page.tsx
+type Pokemon = {
+  name: string;
+  sprites: {
+    front_default: string;
+  };
+};
 
-async function getPokemon() {
-  const res = await fetch(
-    "https://pokeapi.co/api/v2/pokemon/${name.toLowerCase()}"
-  );
-  if (!res.ok) throw new Error('Failed to fetch Pokémon');
-  return res.json();
-}
+export default function SearchPokemon() {
+  const [name, setName] = useState("");
+  const [pokemons, setPokemons] = useState<Pokemon[]>([]);
 
-export default function Home() {
+  // 🔄 Fetch first 151 Pokémon on mount
+  useEffect(() => {
+    const fetchInitialPokemons = async () => {
+      const res = await fetch("https://pokeapi.co/api/v2/pokemon?limit=151");
+      const data = await res.json();
+      const results = data.results; // array of { name, url }
+
+      const detailedData = await Promise.all(
+        results.map(async (poke: { name: string; url: string }) => {
+          const res = await fetch(poke.url);
+          return await res.json();
+        })
+      );
+
+      setPokemons(detailedData);
+    };
+
+    fetchInitialPokemons();
+  }, []);
+
+  // 🔍 Search for a specific Pokémon
+  const handleSearch = async () => {
+    try {
+      const res = await fetch(
+        `https://pokeapi.co/api/v2/pokemon/${name.toLowerCase()}`
+      );
+      if (!res.ok) throw new Error("Pokémon not found");
+      const data = await res.json();
+
+      const alreadyExists = pokemons.some((p) => p.name === data.name);
+      if (!alreadyExists) {
+        setPokemons((prev) => [data, ...prev]);
+      } else {
+        alert("Pokémon already shown");
+      }
+
+      setName("");
+    } catch (error: any) {
+      alert(error.message);
+    }
+  };
+
   return (
     <main>
-      <div className="border-gray-200 m-10">
+      <div className="border-gray-200 m-10 flex gap-2">
         <input
           type="text"
-          placeholder="Search Pokémon..."
-          className="w-full px-3 py-2 border rounded-full focus:outline-none focus:ring-2 focus:ring-blue-500"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+          placeholder="Enter Pokémon name"
+          className="border p-2 rounded"
         />
+        <button
+          onClick={handleSearch}
+          className="bg-blue-500 text-white px-4 py-2 rounded"
+        >
+          Search
+        </button>
       </div>
-      <section>
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 p-10">
-          {Array.from({ length: 20 }).map((_, index) => (
-            <div
-              key={index}
-              className="bg-white rounded-lg shadow-md p-4 flex flex-col items-center"
-            >
+
+      <section className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4 m-10">
+        {pokemons.map((pokemon) => (
+          <div
+            key={pokemon.name}
+            className="border p-4 rounded shadow text-center"
+          >
+            <h2 className="capitalize font-bold mb-2">{pokemon.name}</h2>
+            {pokemon.sprites.front_default && (
               <Image
-                src={`/pokemon/${index + 1}.png`}
-                alt={`Pokémon ${index + 1}`}
+                src={pokemon.sprites.front_default}
+                alt={pokemon.name}
                 width={100}
                 height={100}
               />
-              <h3 className="mt-2 text-lg font-semibold">Pokémon {index + 1}</h3>
-            </div>
-          ))}
-        </div>
+            )}
+          </div>
+        ))}
       </section>
     </main>
   );
