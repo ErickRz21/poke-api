@@ -41,8 +41,7 @@ export default function PokemonCard({
   return (
     <div
       ref={ref}
-      className="group p-4 rounded-4xl shadow-inner dark:shadow-neutral-700 text-center bg-neutral-100 dark:bg-neutral-900 dark:text-white 
-      hover:shadow-neutral-400 transition-shadow duration-200 cursor-pointer min-h-[180px]"
+      className="style group p-4 rounded-4xl text-center cursor-pointer min-h-[180px]"
     >
       {!isVisible ? (
         <div className="animate-pulse">

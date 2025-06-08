@@ -7,15 +7,12 @@ export default function useInView(options = {}) {
   useEffect(() => {
     if (!ref.current || isVisible) return;
 
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true);
-          observer.disconnect();
-        }
-      },
-      options
-    );
+    const observer = new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting) {
+        setIsVisible(true);
+        observer.disconnect();
+      }
+    }, options);
 
     observer.observe(ref.current);
     return () => observer.disconnect();

@@ -9,7 +9,7 @@ const UpButton = () => {
   // Return to top script
   useEffect(() => {
     const handleScroll = () => {
-      const halfPage = window.innerHeight / 1;
+      const halfPage = window.innerHeight / 2;
       setShowButton(window.scrollY > halfPage);
     };
 
@@ -32,12 +32,11 @@ const UpButton = () => {
             duration: 1,
             mass: 2,
           }}
-          className="fixed bottom-4 right-4 z-50"
+          className="fixed bottom-5 right-5 z-20"
         >
           <button
             onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-            className="px-4.5 py-3 lg:px-5.5 lg:py-4 text-2xl rounded-2xl duration-200 z-50 cursor-pointer 
-            bg-neutral-200 dark:bg-neutral-900 text-black dark:text-white shadow-inner dark:shadow-neutral-700 hover:shadow-neutral-400 "
+            className="style px-4.5 py-3 lg:px-5.5 lg:py-4 text-2xl rounded-2xl duration-200 z-50 cursor-pointer"
             aria-label="Scroll to top"
           >
             <FontAwesomeIcon icon={faArrowUp} />

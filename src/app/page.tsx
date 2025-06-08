@@ -2,6 +2,8 @@
 import { useEffect, useState } from "react";
 import PokemonCard from "@/components/PokemonCard";
 import UpButton from "@/components/UpButton";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faXmark } from "@fortawesome/free-solid-svg-icons";
 
 type Pokemon = {
   id: number;
@@ -32,7 +34,7 @@ export default function SearchPokemon() {
         results.map(async (poke: { name: string; url: string }) => {
           const res = await fetch(poke.url);
           return await res.json();
-        })
+        }),
       );
 
       setPokemons(detailedData);
@@ -54,16 +56,16 @@ export default function SearchPokemon() {
             value={name}
             onChange={(e) => setName(e.target.value)}
             placeholder="Search Pokémon"
-            className="py-4 px-6 rounded-full w-full shadow-inner dark:shadow-neutral-700 bg-neutral-100 dark:bg-neutral-900 text-lg text-black dark:text-white"
+            className="style py-4 px-6 rounded-full w-full text-lg focus:outline-none"
           />
           {name && (
             <button
               type="button"
               onClick={() => setName("")}
-              className="absolute right-6 top-1/2 -translate-y-1/2 text-gray-500 focus:outline-none font-bold text-2xl hover:text-white duration-200"
+              className="absolute right-6 top-1/2 -translate-y-1/2 text-neutral-400 font-bold text-2xl hover:rotate-180 duration-300 hover:text-black dark:hover:text-white "
               aria-label="Clear"
             >
-              x
+              <FontAwesomeIcon icon={faXmark} />
             </button>
           )}
         </div>
