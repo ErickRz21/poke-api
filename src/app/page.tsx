@@ -39,15 +39,27 @@ export default function SearchPokemon() {
 
   return (
     <main>
-      <div className="border-gray-200 m-10 flex gap-0">
-        <input
-          type="text"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-          placeholder="Search Pokémon"
-          className="py-4 px-6 rounded-full w-full max-w-4xl shadow-inner dark:shadow-neutral-700 bg-white dark:bg-neutral-900 text-lg text-black dark:text-white"
-        />
-      </div>
+      <section className="m-10">
+        <div className="relative w-full max-w-4xl">
+          <input
+            type="text"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            placeholder="Search Pokémon"
+            className="py-4 px-6 rounded-full w-full shadow-inner dark:shadow-neutral-700 bg-white dark:bg-neutral-900 text-lg text-black dark:text-white"
+          />
+          {name && (
+            <button
+              type="button"
+              onClick={() => setName("")}
+              className="absolute right-6 top-1/2 -translate-y-1/2 text-gray-500 focus:outline-none font-bold text-2xl hover:text-white duration-200"
+              aria-label="Clear"
+            >
+            x
+            </button>
+          )}
+        </div>
+      </section>
 
       <section className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4 m-10">
         {filteredPokemons.map((pokemon) => (
