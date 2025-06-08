@@ -6,7 +6,13 @@ type PokemonCardProps = {
   id: number;
   name: string;
   sprites: { front_default: string };
-  types: any[];
+  types: {
+    slot: number;
+    type: {
+      name: string;
+      url: string;
+    };
+  }[];
 };
 
 export default function PokemonCard({

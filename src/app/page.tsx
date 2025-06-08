@@ -8,7 +8,13 @@ type Pokemon = {
   sprites: {
     front_default: string;
   };
-  types: any[];
+  types: {
+    slot: number;
+    type: {
+      name: string;
+      url: string;
+    };
+  }[];
 };
 
 export default function SearchPokemon() {
