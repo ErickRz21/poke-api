@@ -39,7 +39,7 @@ export default function SearchPokemon() {
 
   return (
     <main>
-      <section className="m-10">
+      <section className="m-5 md:m-10">
         <div className="relative w-full max-w-4xl">
           <input
             type="text"
@@ -61,7 +61,7 @@ export default function SearchPokemon() {
         </div>
       </section>
 
-      <section className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4 m-10">
+      <section className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4 m-5 md:m-10">
         {filteredPokemons.map((pokemon) => (
           <PokemonCard
             key={pokemon.name}
