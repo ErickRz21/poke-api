@@ -5,8 +5,11 @@ import UpButton from "@/components/UpButton";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
 import { usePokemons } from "@/hooks/usePokemons";
+import type { Pokemon } from "@/types/pokemon";
+import PokedexPanel from "@/components/PokedexPanel";
 
 export default function SearchPokemon() {
+  const [selectedPokemon, setSelectedPokemon] = useState<Pokemon | null>(null);
   const [name, setName] = useState("");
   const { pokemons, loading, error } = usePokemons(1000);
 
@@ -14,8 +17,9 @@ export default function SearchPokemon() {
   const filteredPokemons = name
     ? pokemons.filter((p) => p.name.toLowerCase().includes(name.toLowerCase()))
     : pokemons;
-
-  return (
+    
+    console.log(selectedPokemon);
+    return (
     <main>
       <section className="m-5 md:m-10">
         <div className="relative w-full max-w-4xl">
@@ -45,7 +49,11 @@ export default function SearchPokemon() {
         {!loading &&
           !error &&
           filteredPokemons.map((pokemon) => (
-            <PokemonCard key={pokemon.name} pokemon={pokemon} />
+            <PokemonCard
+              key={pokemon.name}
+              pokemon={pokemon}
+              onClick={() => setSelectedPokemon(pokemon)}
+            />
           ))}
       </section>
 
@@ -53,6 +61,12 @@ export default function SearchPokemon() {
       <section className="fixed bottom-5 right-5">
         <UpButton />
       </section>
+      {selectedPokemon && (
+        <PokedexPanel
+          pokemon={selectedPokemon}
+          onClose={() => setSelectedPokemon(null)}
+        />
+      )}
     </main>
   );
 }

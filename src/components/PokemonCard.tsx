@@ -5,9 +5,10 @@ import type { Pokemon } from "@/types/pokemon";
 
 type PokemonCardProps = {
   pokemon: Pokemon;
+  onClick?: () => void; // Optional click handler for the card
 };
 
-export default function PokemonCard({ pokemon }: PokemonCardProps) {
+export default function PokemonCard({ pokemon, onClick }: PokemonCardProps) {
   const { id, name, sprites } = pokemon;
   const { ref, isVisible } = useInView({ threshold: 1 });
 
@@ -29,6 +30,7 @@ export default function PokemonCard({ pokemon }: PokemonCardProps) {
   return (
     <div
       ref={ref}
+      onClick={onClick}
       className="style group p-2 rounded-4xl text-center cursor-pointer min-h-[180px]"
     >
       {!isVisible ? (
