@@ -37,7 +37,7 @@ const UpButton = () => {
           <button
             onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
             className="px-4.5 py-3 lg:px-5.5 lg:py-4 text-2xl rounded-2xl duration-200 z-50 cursor-pointer 
-            bg-neutral-900 text-white shadow-inner dark:shadow-neutral-700 hover:shadow-neutral-400 "
+            bg-neutral-200 dark:bg-neutral-900 text-black dark:text-white shadow-inner dark:shadow-neutral-700 hover:shadow-neutral-400 "
             aria-label="Scroll to top"
           >
             <FontAwesomeIcon icon={faArrowUp} />
