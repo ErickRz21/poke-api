@@ -60,7 +60,7 @@ export default function PokemonCard({
               loading="lazy"
             />
           )}
-          <p className="text-xs text-gray-500 dark:text-gray-400 mt-0 font-extrabold">
+          <p className="text-xs text-gray-500 dark:text-gray-400 font-extrabold">
             N°{id ? `${id}` : "Unknown ID"}
           </p>
           <h2 className="capitalize font-bold mb-2 text-lg">{name}</h2>
