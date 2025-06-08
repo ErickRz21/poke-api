@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import PokemonCard from "@/components/PokemonCard";
 
 type Pokemon = {
+  id: number;
   name: string;
   sprites: {
     front_default: string;
@@ -64,12 +65,23 @@ export default function SearchPokemon() {
       <section className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4 m-5 md:m-10">
         {filteredPokemons.map((pokemon) => (
           <PokemonCard
+            id={pokemon.id}
             key={pokemon.name}
             name={pokemon.name}
             sprites={pokemon.sprites}
             types={pokemon.types}
           />
         ))}
+      </section>
+      {/* UpButton */}
+      <section className="fixed bottom-5 right-5">
+        <button
+          onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+          className="bg-indigo-500 text-white p-5 text-lg rounded-3xl shadow-lg hover:bg-indigo-600 duration-200"
+          aria-label="Scroll to top"
+        >
+          Top
+        </button>
       </section>
     </main>
   );

@@ -3,12 +3,14 @@ import typeColors from "@/utils/typeColors";
 import useInView from "@/hooks/useInView";
 
 type PokemonCardProps = {
+  id: number;
   name: string;
   sprites: { front_default: string };
   types: any[];
 };
 
 export default function PokemonCard({
+  id,
   name,
   sprites,
   types,
@@ -33,7 +35,7 @@ export default function PokemonCard({
   return (
     <div
       ref={ref}
-      className="p-4 rounded-4xl shadow-inner dark:shadow-neutral-700 text-center bg-white dark:bg-neutral-900 dark:text-white 
+      className="group p-4 rounded-4xl shadow-inner dark:shadow-neutral-700 text-center bg-white dark:bg-neutral-900 dark:text-white 
       hover:shadow-neutral-400 transition-shadow duration-200 cursor-pointer min-h-[180px]"
     >
       {!isVisible ? (
@@ -51,11 +53,16 @@ export default function PokemonCard({
             <Image
               src={sprites.front_default}
               alt={name}
-              width={100}
-              height={100}
-              className="mx-auto mb-0"
+              width={90}
+              height={90}
+              className="mx-auto group-hover:scale-125 duration-200 transition-transform"
+              unoptimized
+              loading="lazy"
             />
           )}
+          <p className="text-xs text-gray-500 dark:text-gray-400 mt-0 font-extrabold">
+            N°{id ? `${id}` : "Unknown ID"}
+          </p>
           <h2 className="capitalize font-bold mb-2 text-lg">{name}</h2>
           <div className="mt-2 flex justify-center gap-2 flex-wrap">
             {typeBadges}
