@@ -55,11 +55,11 @@ export default function PokemonCard({ pokemon, onClick }: PokemonCardProps) {
               loading="lazy"
             />
           )}
-          <p className="text-xs text-gray-500 dark:text-gray-400 font-extrabold">
+          <p className="number">
             N°{id ? `${id}` : "Unknown ID"}
           </p>
           <h2 className="capitalize font-bold mb-2 text-lg">{name}</h2>
-          <div className="mt-2 flex justify-center gap-2 flex-wrap">
+          <div className="badge">
             {typeBadges}
           </div>
         </>

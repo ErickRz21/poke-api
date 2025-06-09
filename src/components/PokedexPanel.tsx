@@ -2,6 +2,8 @@
 import type { Pokemon } from "@/types/pokemon";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
+import Image from "next/image";
+import typeColors from "@/utils/typeColors";
 
 type PokedexPanelProps = {
   pokemon: Pokemon;
@@ -10,7 +12,7 @@ type PokedexPanelProps = {
 
 export default function PokedexPanel({ pokemon, onClose }: PokedexPanelProps) {
   return (
-    <div className="fixed top-0 right-0 w-full sm:w-[400px] h-full bg-white dark:bg-zinc-900 shadow-lg z-50 transition-transform duration-300 ease-in-out">
+    <section className="fixed top-0 right-0 w-full sm:w-[400px] h-full bg-white dark:bg-zinc-900 shadow-lg z-50 transition-transform duration-300 ease-in-out">
       <button
         onClick={onClose}
         className="absolute top-4 right-4 text-2xl text-neutral-600 hover:text-red-500"
@@ -19,46 +21,84 @@ export default function PokedexPanel({ pokemon, onClose }: PokedexPanelProps) {
         <FontAwesomeIcon icon={faXmark} />
       </button>
 
-      <div className="p-6 mt-10">
-        <img
-          src={pokemon.sprites.front_default}
-          alt={pokemon.name}
-          className="w-32 h-32 mx-auto"
-        />
-        <h2 className="text-center text-2xl font-bold capitalize mt-4">
-          {pokemon.name}
-        </h2>
-        <div className="mt-4 text-center">
-          <p>
-            <strong>ID:</strong> {pokemon.id}
-          </p>
-          <p>
-            <strong>Type:</strong>{" "}
-            {pokemon.types.map((t) => t.type.name).join(", ")}
-          </p>
-          <p>
-            <strong>Height:</strong> {pokemon.height / 10} m
-          </p>
-          <p>
-            <strong>Weight:</strong> {pokemon.weight / 10} kg
-          </p>
-          <p>
-            <strong>Base Experience:</strong> {pokemon.base_experience}
-          </p>
-          <p>
-            <strong>Abilities:</strong>{" "}
-            {pokemon.abilities.map((a) => a.ability.name).join(", ")}
-          </p>
-          <strong>Stats:</strong>
-          <ul className="list-disc list-inside">
-            {pokemon.stats.map((s) => (
-              <li key={s.stat.name}>
-                {s.stat.name}: {s.base_stat}
-              </li>
-            ))}
-          </ul>
+      <div className="p-6 mt-10 text-gray-800 dark:text-white space-y-6">
+        <div className="flex flex-col items-center space-y-2">
+          <Image
+            src={pokemon.sprites.front_default}
+            alt={pokemon.name}
+            width={128}
+            height={128}
+            className="w-52 h-52 object-contain"
+            unoptimized
+          />
+          <span className="text-gray-500 dark:text-gray-400 font-semibold">
+            N°{pokemon.id}
+          </span>
+          <h2 className="text-3xl font-bold capitalize">{pokemon.name}</h2>
+          <div className="flex items-center">
+            {pokemon.types.map((t) => {
+              const typeName = t.type.name;
+              const colorClass =
+                typeColors[typeName] ||
+                "bg-gray-200 text-black dark:bg-gray-600 dark:text-white";
+              return (
+                <span
+                  key={typeName}
+                  className={`text-sm px-2 py-2 rounded-lg capitalize font-semibold ${colorClass}`}
+                >
+                  {typeName}
+                </span>
+              );
+            })}
+          </div>
+        </div>
+        <div className="style space-y-4 p-4 rounded-3xl">
+          <div className="grid grid-cols-1">
+            <div>
+              <div className="grid grid-cols-2 gap-4 text-center">
+                <div>
+                  <strong>Height</strong>
+                  <p className="style attribute mt-2">
+                    {pokemon.height / 10} m
+                  </p>
+                </div>
+                <div>
+                  <strong>Weight</strong>
+                  <p className="style attribute mt-2">
+                    {pokemon.weight / 10} kg
+                  </p>
+                </div>
+              </div>
+
+              {/* Only one centered "Ability" title */}
+              <div className="flex justify-center mt-4">
+                <strong>Ability</strong>
+              </div>
+
+              {/* Grid for abilities */}
+              <div className="grid grid-cols-2 gap-4 mt-2 text-sm text-center">
+                {pokemon.abilities.map((a) => (
+                  <div key={a.ability.name}>
+                    <p className="style attribute">{a.ability.name}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <strong>Stats</strong>
+            <ul className="space-y-1 text-sm">
+              {pokemon.stats.map((s) => (
+                <li key={s.stat.name}>
+                  <span className="capitalize">{s.stat.name}</span>:{" "}
+                  {s.base_stat}
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
       </div>
-    </div>
+    </section>
   );
 }
