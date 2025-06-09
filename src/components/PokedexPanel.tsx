@@ -31,7 +31,7 @@ export default function PokedexPanel({ pokemon, onClose }: PokedexPanelProps) {
             className="w-52 h-52 object-contain"
             unoptimized
           />
-          <span className="text-gray-500 dark:text-gray-400 font-semibold">
+          <span className="text-gray-500 dark:text-gray-400 font-semibold text-sm">
             N°{pokemon.id}
           </span>
           <h2 className="text-3xl font-bold capitalize">{pokemon.name}</h2>
@@ -52,7 +52,7 @@ export default function PokedexPanel({ pokemon, onClose }: PokedexPanelProps) {
             })}
           </div>
         </div>
-        <div className="style space-y-4 p-4 rounded-3xl">
+        <div className="style space-y-4 p-4 rounded-3xl text-sm">
           <div className="grid grid-cols-1">
             <div>
               <div className="grid grid-cols-2 gap-4 text-center">
@@ -86,17 +86,27 @@ export default function PokedexPanel({ pokemon, onClose }: PokedexPanelProps) {
             </div>
           </div>
 
-          <div>
-            <strong>Stats</strong>
-            <ul className="space-y-1 text-sm">
+          <section className="mt-6">
+            <strong className="block text-center">Stats</strong>
+            <ul className="space-y-3">
               {pokemon.stats.map((s) => (
                 <li key={s.stat.name}>
-                  <span className="capitalize">{s.stat.name}</span>:{" "}
-                  {s.base_stat}
+                  <div className="flex justify-between mb-1">
+                    <span className="capitalize font-medium">
+                      {s.stat.name}
+                    </span>
+                    <span className="font-bold">{s.base_stat}</span>
+                  </div>
+                  <div className="w-full bg-gray-200 dark:bg-neutral-800 rounded-full h-1">
+                    <div
+                      className="bg-black dark:bg-white h-1 rounded-full"
+                      style={{ width: `${(s.base_stat / 150) * 100}%` }} // Adjust 150 if needed
+                    ></div>
+                  </div>
                 </li>
               ))}
             </ul>
-          </div>
+          </section>
         </div>
       </div>
     </section>
