@@ -29,7 +29,8 @@ export function usePokemons(limit = 1000) {
             const speciesData = await speciesRes.json();
 
             const englishEntry = speciesData.flavor_text_entries.find(
-              (entry: any) => entry.language.name === "en"
+              (entry: { flavor_text: string; language: { name: string } }) =>
+                entry.language.name === "en"
             );
 
             const description = englishEntry?.flavor_text.replace(/\f|\n/g, " ") || "No description available.";
