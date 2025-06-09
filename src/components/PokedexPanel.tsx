@@ -44,7 +44,7 @@ export default function PokedexPanel({ pokemon, onClose, show }: PokedexPanelPro
             <FontAwesomeIcon icon={faXmark} />
           </button>
 
-          <div className="p-6 pt-14 text-gray-800 dark:text-white space-y-6">
+          <div className="p-5 py-10 text-gray-800 dark:text-white space-y-6">
             {/* Poke Info */}
             <div className="flex flex-col items-center space-y-2">
               <Image
