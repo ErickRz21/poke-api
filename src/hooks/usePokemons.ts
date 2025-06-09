@@ -11,23 +11,36 @@ export function usePokemons(limit = 1000) {
       try {
         setLoading(true);
         setError(null);
-  
+
         const res = await fetch(`https://pokeapi.co/api/v2/pokemon?limit=${limit}`);
         if (!res.ok) throw new Error("Failed to fetch Pokémon list");
-  
+
         const data = await res.json();
         console.log("Basic list:", data.results);
-  
+
         const detailedData = await Promise.all(
           data.results.map(async (poke: { name: string; url: string }) => {
             const res = await fetch(poke.url);
             if (!res.ok) throw new Error(`Failed to fetch ${poke.name}`);
             const detail = await res.json();
-            console.log("Fetched detail:", detail.name);
-            return detail;
-          }),
+
+            // Fetch species info for description
+            const speciesRes = await fetch(`https://pokeapi.co/api/v2/pokemon-species/${detail.id}`);
+            const speciesData = await speciesRes.json();
+
+            const englishEntry = speciesData.flavor_text_entries.find(
+              (entry: any) => entry.language.name === "en"
+            );
+
+            const description = englishEntry?.flavor_text.replace(/\f|\n/g, " ") || "No description available.";
+
+            return {
+              ...detail,
+              description,
+            };
+          })
         );
-  
+
         setPokemons(detailedData);
       } catch (err: unknown) {
         if (err instanceof Error) {
@@ -39,10 +52,9 @@ export function usePokemons(limit = 1000) {
         setLoading(false);
       }
     };
-  
+
     fetchPokemons();
   }, [limit]);
-  
 
   return { pokemons, loading, error };
 }

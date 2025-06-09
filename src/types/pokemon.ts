@@ -35,7 +35,7 @@ export type Pokemon = {
         name: string;
         url: string;
       };
-      
     }[];
+    description: string;
   };
   

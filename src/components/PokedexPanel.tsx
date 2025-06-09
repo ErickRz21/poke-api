@@ -44,7 +44,7 @@ export default function PokedexPanel({ pokemon, onClose }: PokedexPanelProps) {
 
       <div className="p-5 py-5 lg:py-10 text-gray-800 dark:text-white space-y-3">
         {/* Poke Info */}
-        <div className="flex flex-col items-center space-y-1">
+        <section className="flex flex-col items-center space-y-2">
           <Image
             src={pokemon.sprites.front_default}
             alt={pokemon.name}
@@ -53,9 +53,6 @@ export default function PokedexPanel({ pokemon, onClose }: PokedexPanelProps) {
             className="w-32 h-32 md:w-52 md:h-52 object-contain"
             unoptimized
           />
-          <span className="text-gray-500 dark:text-gray-400 font-semibold text-sm">
-            N°{pokemon.id}
-          </span>
           <h2 className="text-3xl font-bold capitalize">{pokemon.name}</h2>
           <div className="flex flex-wrap justify-center gap-1">
             {pokemon.types.map((t) => {
@@ -70,11 +67,16 @@ export default function PokedexPanel({ pokemon, onClose }: PokedexPanelProps) {
               );
             })}
           </div>
-        </div>
+          {/* Description */}
+          <p className="text-center text-gray-600 dark:text-neutral-200 text-sm md:text-base px-0">
+            {pokemon.description ||
+              "This is a placeholder description for the Pokémon."}
+          </p>
+        </section>
 
         {/* Info Box */}
-        <div className="bg-neutral-300/90 dark:bg-neutral-950/90 p-5 rounded-4xl text-sm space-y-2">
-          <div className="grid grid-cols-1">
+        <div className="bg-neutral-300/90 dark:bg-background/90 p-5 rounded-4xl text-sm space-y-2">
+          <section className="grid grid-cols-1">
             <div className="grid grid-cols-2 gap-1 text-center">
               <div>
                 <strong>Height</strong>
@@ -96,7 +98,7 @@ export default function PokedexPanel({ pokemon, onClose }: PokedexPanelProps) {
                 </div>
               ))}
             </div>
-          </div>
+          </section>
 
           {/* Stats */}
           <section>
