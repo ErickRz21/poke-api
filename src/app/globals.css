@@ -42,5 +42,5 @@ main {
 }
 
 .badge {
-  @apply flex flex-wrap justify-center items-center gap-2 text-sm px-2 py-1 rounded-3xl capitalize font-semibold;
+  @apply flex flex-wrap justify-center items-center gap-1 text-sm px-2 py-1 rounded-3xl capitalize font-semibold;
 }

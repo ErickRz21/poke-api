@@ -1,7 +1,7 @@
 // components/PokedexPanel.tsx
 import type { Pokemon } from "@/types/pokemon";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faXmark } from "@fortawesome/free-solid-svg-icons";
+import { faCircleXmark } from "@fortawesome/free-solid-svg-icons";
 import Image from "next/image";
 import typeColors from "@/utils/typeColors";
 import { AnimatePresence, motion } from "framer-motion";
@@ -30,7 +30,7 @@ export default function PokedexPanel({ pokemon, onClose, show }: PokedexPanelPro
       {show && (
         <motion.section
           key="pokedex-panel"
-          className="fixed inset-0 sm:right-0 sm:inset-y-0 sm:w-[400px] w-full h-full bg-white/70 dark:bg-zinc-900/70 backdrop-blur-md shadow-lg z-50 duration-200 overflow-y-auto"
+          className="fixed inset-0 sm:right-0 sm:inset-y-0 sm:w-[350px] w-full h-full bg-white/70 dark:bg-zinc-900/70 backdrop-blur-md shadow-lg z-50 duration-200 overflow-y-auto"
           initial="hidden"
           animate="visible"
           exit="exit"
@@ -38,15 +38,15 @@ export default function PokedexPanel({ pokemon, onClose, show }: PokedexPanelPro
         >
           <button
             onClick={onClose}
-            className="absolute top-4 right-4 text-2xl text-neutral-600 hover:text-red-500 cursor-pointer"
+            className="absolute top-4 right-4 text-4xl text-neutral-600 hover:text-red-500 duration-200 cursor-pointer"
             aria-label="Close"
           >
-            <FontAwesomeIcon icon={faXmark} />
+            <FontAwesomeIcon icon={faCircleXmark} />
           </button>
 
-          <div className="p-5 py-10 text-gray-800 dark:text-white space-y-6">
+          <div className="p-5 py-5 lg:py-10 text-gray-800 dark:text-white space-y-3">
             {/* Poke Info */}
-            <div className="flex flex-col items-center space-y-2">
+            <div className="flex flex-col items-center space-y-1">
               <Image
                 src={pokemon.sprites.front_default}
                 alt={pokemon.name}
@@ -75,7 +75,7 @@ export default function PokedexPanel({ pokemon, onClose, show }: PokedexPanelPro
             </div>
 
             {/* Info Box */}
-            <div className="bg-neutral-300/90 dark:bg-neutral-950/90 space-y-4 p-5 rounded-3xl text-sm">
+            <div className="bg-neutral-300/90 dark:bg-neutral-950/90 p-5 rounded-4xl text-sm">
               <div className="grid grid-cols-1">
                 <div className="grid grid-cols-2 gap-4 text-center">
                   <div>
