@@ -108,22 +108,27 @@ export default function PokedexPanel({ pokemon, onClose, show }: PokedexPanelPro
               <section className="mt-6">
                 <strong className="block text-center">Stats</strong>
                 <ul className="space-y-3">
-                  {pokemon.stats.map((s) => (
-                    <li key={s.stat.name}>
-                      <div className="flex justify-between mb-1">
-                        <span className="capitalize font-medium">
-                          {s.stat.name}
-                        </span>
-                        <span className="font-bold">{s.base_stat}</span>
-                      </div>
-                      <div className="w-full bg-gray-200 dark:bg-neutral-800 rounded-full h-1">
-                        <div
-                          className="bg-black dark:bg-white h-1 rounded-full"
-                          style={{ width: `${(s.base_stat / 150) * 100}%` }}
-                        ></div>
-                      </div>
-                    </li>
-                  ))}
+                  {pokemon.stats.map((s) => {
+                    const mainType = pokemon.types[0].type.name;
+                    const barClass = typeColors[mainType] || "bg-black";
+
+                    return (
+                      <li key={s.stat.name}>
+                        <div className="flex justify-between mb-1">
+                          <span className="capitalize font-medium">
+                            {s.stat.name}
+                          </span>
+                          <span className="font-bold">{s.base_stat}</span>
+                        </div>
+                        <div className="w-full bg-gray-200 dark:bg-neutral-700 rounded-full h-1">
+                          <div
+                            className={`h-1 rounded-full ${barClass}`}
+                            style={{ width: `${(s.base_stat / 150) * 100}%` }}
+                          ></div>
+                        </div>
+                      </li>
+                    );
+                  })}
                 </ul>
               </section>
             </div>
