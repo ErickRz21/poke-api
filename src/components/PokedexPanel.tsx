@@ -21,7 +21,7 @@ export default function PokedexPanel({ pokemon, onClose }: PokedexPanelProps) {
         <FontAwesomeIcon icon={faXmark} />
       </button>
 
-      <div className="p-6 mt-10 text-gray-800 dark:text-white space-y-6">
+      <div className="p-6 my-5 text-gray-800 dark:text-white space-y-6">
         <div className="flex flex-col items-center space-y-2">
           <Image
             src={pokemon.sprites.front_default}
@@ -52,7 +52,7 @@ export default function PokedexPanel({ pokemon, onClose }: PokedexPanelProps) {
             })}
           </div>
         </div>
-        <div className="bg-white-200/90 dark:bg-neutral-950/90 space-y-4 p-5 rounded-3xl text-sm">
+        <div className="bg-gray-100/90 dark:bg-neutral-950/90 space-y-4 p-5 rounded-3xl text-sm">
           <div className="grid grid-cols-1">
             <div>
               <div className="grid grid-cols-2 gap-4 text-center">
