@@ -36,7 +36,7 @@ export default function PokedexPanel({ pokemon, onClose }: PokedexPanelProps) {
     >
       <button
         onClick={onClose}
-        className="absolute top-4 right-4 text-4xl text-neutral-600 hover:text-red-500 duration-200 cursor-pointer"
+        className="absolute top-4 right-4 text-4xl text-neutral-300/90 dark:text-neutral-700/90 hover:text-red-500 duration-200 cursor-pointer"
         aria-label="Close"
       >
         <FontAwesomeIcon icon={faCircleXmark} />
@@ -57,7 +57,7 @@ export default function PokedexPanel({ pokemon, onClose }: PokedexPanelProps) {
             N°{pokemon.id}
           </span>
           <h2 className="text-3xl font-bold capitalize">{pokemon.name}</h2>
-          <div className="flex flex-wrap justify-center gap-2">
+          <div className="flex flex-wrap justify-center gap-1">
             {pokemon.types.map((t) => {
               const typeName = t.type.name;
               const colorClass =
@@ -73,9 +73,9 @@ export default function PokedexPanel({ pokemon, onClose }: PokedexPanelProps) {
         </div>
 
         {/* Info Box */}
-        <div className="bg-neutral-300/90 dark:bg-neutral-950/90 p-5 rounded-4xl text-sm">
+        <div className="bg-neutral-300/90 dark:bg-neutral-950/90 p-5 rounded-4xl text-sm space-y-2">
           <div className="grid grid-cols-1">
-            <div className="grid grid-cols-2 gap-4 text-center">
+            <div className="grid grid-cols-2 gap-1 text-center">
               <div>
                 <strong>Height</strong>
                 <p className="style attribute mt-2">{pokemon.height / 10} m</p>
@@ -86,10 +86,10 @@ export default function PokedexPanel({ pokemon, onClose }: PokedexPanelProps) {
               </div>
             </div>
 
-            <div className="flex justify-center mt-4">
+            <div className="flex justify-center mt-2">
               <strong>Ability</strong>
             </div>
-            <div className="grid grid-cols-2 gap-4 mt-2 text-sm text-center">
+            <div className="grid grid-cols-2 gap-1 mt-2 text-center">
               {pokemon.abilities.map((a) => (
                 <div key={a.ability.name}>
                   <p className="style attribute">{a.ability.name}</p>
@@ -99,7 +99,7 @@ export default function PokedexPanel({ pokemon, onClose }: PokedexPanelProps) {
           </div>
 
           {/* Stats */}
-          <section className="mt-6">
+          <section>
             <strong className="block text-center">Stats</strong>
             <ul className="space-y-3">
               {pokemon.stats.map((s) => {
@@ -114,7 +114,7 @@ export default function PokedexPanel({ pokemon, onClose }: PokedexPanelProps) {
                       </span>
                       <span className="font-bold">{s.base_stat}</span>
                     </div>
-                    <div className="w-full bg-gray-400 dark:bg-neutral-700 rounded-full h-1">
+                    <div className="w-full bg-white dark:bg-neutral-700 rounded-full h-1">
                       <div
                         className={`h-1 rounded-full ${barClass}`}
                         style={{ width: `${(s.base_stat / 180) * 100}%` }}
