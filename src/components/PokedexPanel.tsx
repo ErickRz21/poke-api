@@ -13,14 +13,14 @@ type PokedexPanelProps = {
 };
 
 const modalVariants = {
-  hidden: { x: "100%" },
+  hidden: { y: "-100%" },
   visible: {
-    x: 0,
+    y: 0,
     transition: { type: "tween", duration: 0.3},
   },
   exit: {
-    x: "100%",
-    transition: { type: "spring", stiffness: 300, damping: 30 },
+    y: "100%",
+    transition: { type: "tween", duration: 0.3},
   },
 };
 
@@ -38,7 +38,7 @@ export default function PokedexPanel({ pokemon, onClose, show }: PokedexPanelPro
         >
           <button
             onClick={onClose}
-            className="absolute top-4 right-4 text-2xl text-neutral-600 hover:text-red-500"
+            className="absolute top-4 right-4 text-2xl text-neutral-600 hover:text-red-500 cursor-pointer"
             aria-label="Close"
           >
             <FontAwesomeIcon icon={faXmark} />
@@ -123,7 +123,7 @@ export default function PokedexPanel({ pokemon, onClose, show }: PokedexPanelPro
                         <div className="w-full bg-gray-200 dark:bg-neutral-700 rounded-full h-1">
                           <div
                             className={`h-1 rounded-full ${barClass}`}
-                            style={{ width: `${(s.base_stat / 150) * 100}%` }}
+                            style={{ width: `${(s.base_stat / 180) * 100}%` }}
                           ></div>
                         </div>
                       </li>
