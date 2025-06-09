@@ -28,7 +28,7 @@ export default function PokedexPanel({ pokemon, onClose }: PokedexPanelProps) {
             alt={pokemon.name}
             width={128}
             height={128}
-            className="w-52 h-52 object-contain"
+            className="w-32 h-32 md:w-52 md:h-52 object-contain"
             unoptimized
           />
           <span className="text-gray-500 dark:text-gray-400 font-semibold text-sm">
@@ -52,7 +52,7 @@ export default function PokedexPanel({ pokemon, onClose }: PokedexPanelProps) {
             })}
           </div>
         </div>
-        <div className="bg-neutral-200/90 dark:bg-neutral-950/90 space-y-4 p-5 rounded-3xl text-sm">
+        <div className="bg-white-200/90 dark:bg-neutral-950/90 space-y-4 p-5 rounded-3xl text-sm">
           <div className="grid grid-cols-1">
             <div>
               <div className="grid grid-cols-2 gap-4 text-center">
