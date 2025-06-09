@@ -12,7 +12,7 @@ type PokedexPanelProps = {
 
 export default function PokedexPanel({ pokemon, onClose }: PokedexPanelProps) {
   return (
-    <section className="fixed top-0 right-0 w-full sm:w-[400px] h-full bg-white dark:bg-zinc-900 shadow-lg z-50 transition-transform duration-300 ease-in-out">
+    <section className="fixed top-0 right-0 w-full sm:w-[400px] h-full bg-white/70 dark:bg-zinc-900/70 backdrop-blur-md shadow-lg z-50 transition-transform duration-300 ease-in-out">
       <button
         onClick={onClose}
         className="absolute top-4 right-4 text-2xl text-neutral-600 hover:text-red-500"
@@ -35,7 +35,7 @@ export default function PokedexPanel({ pokemon, onClose }: PokedexPanelProps) {
             N°{pokemon.id}
           </span>
           <h2 className="text-3xl font-bold capitalize">{pokemon.name}</h2>
-          <div className="flex items-center">
+          <div className="flex items-center gap-2">
             {pokemon.types.map((t) => {
               const typeName = t.type.name;
               const colorClass =
@@ -44,7 +44,7 @@ export default function PokedexPanel({ pokemon, onClose }: PokedexPanelProps) {
               return (
                 <span
                   key={typeName}
-                  className={`text-sm px-2 py-2 rounded-lg capitalize font-semibold ${colorClass}`}
+                  className={`badge ${colorClass}`}
                 >
                   {typeName}
                 </span>
@@ -52,7 +52,7 @@ export default function PokedexPanel({ pokemon, onClose }: PokedexPanelProps) {
             })}
           </div>
         </div>
-        <div className="style space-y-4 p-4 rounded-3xl text-sm">
+        <div className="bg-neutral-200/90 dark:bg-neutral-950/90 space-y-4 p-5 rounded-3xl text-sm">
           <div className="grid grid-cols-1">
             <div>
               <div className="grid grid-cols-2 gap-4 text-center">
