@@ -75,7 +75,7 @@ export default function PokedexPanel({ pokemon, onClose, show }: PokedexPanelPro
             </div>
 
             {/* Info Box */}
-            <div className="bg-gray-100/90 dark:bg-neutral-950/90 space-y-4 p-5 rounded-3xl text-sm">
+            <div className="bg-neutral-300/90 dark:bg-neutral-950/90 space-y-4 p-5 rounded-3xl text-sm">
               <div className="grid grid-cols-1">
                 <div className="grid grid-cols-2 gap-4 text-center">
                   <div>
@@ -120,7 +120,7 @@ export default function PokedexPanel({ pokemon, onClose, show }: PokedexPanelPro
                           </span>
                           <span className="font-bold">{s.base_stat}</span>
                         </div>
-                        <div className="w-full bg-gray-200 dark:bg-neutral-700 rounded-full h-1">
+                        <div className="w-full bg-gray-400 dark:bg-neutral-700 rounded-full h-1">
                           <div
                             className={`h-1 rounded-full ${barClass}`}
                             style={{ width: `${(s.base_stat / 180) * 100}%` }}
