@@ -65,6 +65,7 @@ export default function SearchPokemon() {
         <PokedexPanel
           pokemon={selectedPokemon}
           onClose={() => setSelectedPokemon(null)}
+          show={!!selectedPokemon}
         />
       )}
     </main>
