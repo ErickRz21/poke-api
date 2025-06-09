@@ -32,7 +32,7 @@ export default function PokedexPanel({ pokemon, onClose }: PokedexPanelProps) {
       animate="visible"
       exit="exit"
       variants={modalVariants}
-      className="fixed inset-0 sm:right-0 sm:inset-y-0 sm:w-[350px] w-full h-full bg-white/70 dark:bg-zinc-900/70 backdrop-blur-md shadow-lg z-50 duration-200 overflow-y-auto"
+      className="fixed inset-0 sm:right-0 sm:inset-y-0 sm:w-[350px] w-full h-full bg-background/70 dark:bg-zinc-900/70 backdrop-blur-md shadow-lg z-50 duration-200 overflow-y-auto"
     >
       <button
         onClick={onClose}
