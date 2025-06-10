@@ -34,7 +34,7 @@ main {
 }
 
 .number {
-  @apply text-xs text-gray-500 dark:text-gray-400 font-extrabold
+  @apply text-xs text-gray-500 dark:text-gray-400 font-extrabold;
 }
 
 .attribute {

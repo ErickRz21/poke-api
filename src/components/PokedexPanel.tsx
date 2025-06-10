@@ -151,7 +151,8 @@ export default function PokedexPanel({ pokemon, onClose }: PokedexPanelProps) {
                             className="inline-block w-4.5 h-4.5"
                           />
                         )}
-                        {statLabels[s.stat.name as keyof typeof statLabels] || s.stat.name}
+                        {statLabels[s.stat.name as keyof typeof statLabels] ||
+                          s.stat.name}
                       </span>
                       <span className="font-bold">{s.base_stat}</span>
                     </div>

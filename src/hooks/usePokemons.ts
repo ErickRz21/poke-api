@@ -12,7 +12,9 @@ export function usePokemons(limit = 1000) {
         setLoading(true);
         setError(null);
 
-        const res = await fetch(`https://pokeapi.co/api/v2/pokemon?limit=${limit}`);
+        const res = await fetch(
+          `https://pokeapi.co/api/v2/pokemon?limit=${limit}`,
+        );
         if (!res.ok) throw new Error("Failed to fetch Pokémon list");
 
         const data = await res.json();
@@ -25,21 +27,25 @@ export function usePokemons(limit = 1000) {
             const detail = await res.json();
 
             // Fetch species info for description
-            const speciesRes = await fetch(`https://pokeapi.co/api/v2/pokemon-species/${detail.id}`);
+            const speciesRes = await fetch(
+              `https://pokeapi.co/api/v2/pokemon-species/${detail.id}`,
+            );
             const speciesData = await speciesRes.json();
 
             const englishEntry = speciesData.flavor_text_entries.find(
               (entry: { flavor_text: string; language: { name: string } }) =>
-                entry.language.name === "en"
+                entry.language.name === "en",
             );
 
-            const description = englishEntry?.flavor_text.replace(/\f|\n/g, " ") || "No description available.";
+            const description =
+              englishEntry?.flavor_text.replace(/\f|\n/g, " ") ||
+              "No description available.";
 
             return {
               ...detail,
               description,
             };
-          })
+          }),
         );
 
         setPokemons(detailedData);
