@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faArrowsUpDown,
   faCircleXmark,
-  faScaleBalanced,
+  faWeightHanging,
 } from "@fortawesome/free-solid-svg-icons";
 import Image from "next/image";
 import typeColors from "@/utils/typeColors";
@@ -101,7 +101,7 @@ export default function PokedexPanel({ pokemon, onClose }: PokedexPanelProps) {
           <section className="grid grid-cols-1">
             <div className="style dark:text-white rounded-2xl py-3 flex items-center text-base bg-gray-900">
               <div className="flex items-center gap-2 flex-1 justify-center">
-                <FontAwesomeIcon icon={faScaleBalanced} />
+                <FontAwesomeIcon icon={faWeightHanging} />
                 <div className="text-sm">
                   <p className="font-semibold">{pokemon.weight / 10} kg</p>
                   <p className="text-xs text-gray-400">Weight</p>
