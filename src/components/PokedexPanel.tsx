@@ -9,6 +9,7 @@ import {
 import Image from "next/image";
 import typeColors from "@/utils/typeColors";
 import { motion } from "framer-motion";
+import { useEffect, useState } from "react";
 
 type PokedexPanelProps = {
   pokemon: Pokemon;
@@ -47,6 +48,14 @@ const modalVariants = {
 };
 
 export default function PokedexPanel({ pokemon, onClose }: PokedexPanelProps) {
+  const [useFallback, setUseFallback] = useState(false);
+  useEffect(() => {
+    // Reset fallback when new Pokémon is selected
+    setUseFallback(false);
+  }, [pokemon.id]);
+  const gifUrl = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/${pokemon.id}.gif`;
+  const fallbackUrl = pokemon.sprites.front_default;
+
   return (
     <motion.section
       key="pokedex-panel"
@@ -68,12 +77,13 @@ export default function PokedexPanel({ pokemon, onClose }: PokedexPanelProps) {
         {/* Poke Info */}
         <section className="flex flex-col items-center space-y-2">
           <Image
-            src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/${pokemon.id}.gif`}
+            src={useFallback ? fallbackUrl : gifUrl}
             alt={pokemon.name}
             width={128}
             height={128}
             className="w-32 h-32 md:w-52 md:h-52 object-contain image-render-pixelated"
             unoptimized
+            onError={() => setUseFallback(true)}
           />
           <h2 className="text-3xl font-bold capitalize">{pokemon.name}</h2>
           <div className="flex flex-wrap justify-center gap-1">
