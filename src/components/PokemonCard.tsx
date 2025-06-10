@@ -50,18 +50,14 @@ export default function PokemonCard({ pokemon, onClick }: PokemonCardProps) {
               alt={name}
               width={90}
               height={90}
-              className="mx-auto group-hover:scale-125 duration-200 transition-transform"
+              className="mx-auto group-hover:scale-125 duration-200 transition-transform image-render-pixelated"
               unoptimized
               loading="lazy"
             />
           )}
-          <p className="number">
-            N°{id ? `${id}` : "Unknown ID"}
-          </p>
+          <p className="number">#{id ? `${id}` : "Unknown ID"}</p>
           <h2 className="capitalize font-bold mb-2 text-lg">{name}</h2>
-          <div className="badge">
-            {typeBadges}
-          </div>
+          <div className="badge">{typeBadges}</div>
         </>
       )}
     </div>

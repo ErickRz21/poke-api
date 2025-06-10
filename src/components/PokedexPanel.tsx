@@ -46,11 +46,11 @@ export default function PokedexPanel({ pokemon, onClose }: PokedexPanelProps) {
         {/* Poke Info */}
         <section className="flex flex-col items-center space-y-2">
           <Image
-            src={pokemon.sprites.front_default}
+            src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/${pokemon.id}.gif`}
             alt={pokemon.name}
             width={128}
             height={128}
-            className="w-32 h-32 md:w-52 md:h-52 object-contain"
+            className="w-32 h-32 md:w-52 md:h-52 object-contain image-render-pixelated"
             unoptimized
           />
           <h2 className="text-3xl font-bold capitalize">{pokemon.name}</h2>

@@ -44,3 +44,7 @@ main {
 .badge {
   @apply flex justify-center items-center gap-1 text-sm px-2 py-1 rounded-3xl capitalize font-semibold;
 }
+
+.image-render-pixelated {
+  image-rendering: pixelated;
+}
