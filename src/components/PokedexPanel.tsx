@@ -5,12 +5,6 @@ import {
   faArrowsUpDown,
   faCircleXmark,
   faScaleBalanced,
-  faHeart,
-  faShieldHalved,
-  faBolt,
-  faPersonRunning,
-  faShield,
-  faHandFist,
 } from "@fortawesome/free-solid-svg-icons";
 import Image from "next/image";
 import typeColors from "@/utils/typeColors";
