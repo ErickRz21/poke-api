@@ -23,12 +23,12 @@ type PokedexPanelProps = {
 };
 
 const statIcons = {
-  hp: faHeart,
-  attack: faHandFist,
-  defense: faShield,
-  "special-attack": faBolt,
-  "special-defense": faShieldHalved,
-  speed: faPersonRunning,
+  hp: "/icons/Hearth.png",
+  attack: "/icons/Sword.png",
+  defense: "/icons/Shield.png",
+  "special-attack": "/icons/Bolt.png",
+  "special-defense": "/icons/SpShield.png",
+  speed: "/icons/Speed.png",
 };
 
 const modalVariants = {
@@ -135,20 +135,20 @@ export default function PokedexPanel({ pokemon, onClose }: PokedexPanelProps) {
               {pokemon.stats.map((s) => {
                 const mainType = pokemon.types[0].type.name;
                 const barClass = typeColors[mainType] || "bg-black";
+                const statName = s.stat.name as keyof typeof statIcons;
 
                 return (
                   <li key={s.stat.name}>
                     <div className="flex justify-between items-center mb-1">
                       <span className="capitalize font-medium flex items-center gap-2">
-                        {statIcons[s.stat.name as keyof typeof statIcons] && (
-                          <FontAwesomeIcon
-                            icon={
-                              statIcons[s.stat.name as keyof typeof statIcons]
-                            }
-                            className="text-sm"
+                        {statIcons[statName] && (
+                          <img
+                            src={statIcons[statName]}
+                            alt={`${statName} icon`}
+                            className="inline-block w-4.5 h-4.5"
                           />
                         )}
-                        {s.stat.name}
+                        {statName}
                       </span>
                       <span className="font-bold">{s.base_stat}</span>
                     </div>
