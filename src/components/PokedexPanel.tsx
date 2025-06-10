@@ -5,6 +5,12 @@ import {
   faArrowsUpDown,
   faCircleXmark,
   faScaleBalanced,
+  faHeart,
+  faShieldHalved,
+  faBolt,
+  faPersonRunning,
+  faShield,
+  faHandFist,
 } from "@fortawesome/free-solid-svg-icons";
 import Image from "next/image";
 import typeColors from "@/utils/typeColors";
@@ -14,6 +20,15 @@ type PokedexPanelProps = {
   pokemon: Pokemon;
   onClose: () => void;
   show: boolean;
+};
+
+const statIcons = {
+  hp: faHeart,
+  attack: faHandFist,
+  defense: faShield,
+  "special-attack": faBolt,
+  "special-defense": faShieldHalved,
+  speed: faPersonRunning,
 };
 
 const modalVariants = {
@@ -123,8 +138,16 @@ export default function PokedexPanel({ pokemon, onClose }: PokedexPanelProps) {
 
                 return (
                   <li key={s.stat.name}>
-                    <div className="flex justify-between mb-1">
-                      <span className="capitalize font-medium">
+                    <div className="flex justify-between items-center mb-1">
+                      <span className="capitalize font-medium flex items-center gap-2">
+                        {statIcons[s.stat.name as keyof typeof statIcons] && (
+                          <FontAwesomeIcon
+                            icon={
+                              statIcons[s.stat.name as keyof typeof statIcons]
+                            }
+                            className="text-sm"
+                          />
+                        )}
                         {s.stat.name}
                       </span>
                       <span className="font-bold">{s.base_stat}</span>
