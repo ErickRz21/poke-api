@@ -27,9 +27,7 @@ const UpButton = () => {
           exit={{ opacity: 0, y: 60, scale: 0.7 }}
           transition={{
             type: "spring",
-            stiffness: 300,
-            damping: 25,
-            duration: 1,
+            damping: 10,
             mass: 2,
           }}
           className="fixed bottom-5 right-5 z-20"
