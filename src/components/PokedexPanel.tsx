@@ -25,6 +25,15 @@ const statIcons = {
   speed: "/icons/Speed.png",
 };
 
+const statLabels = {
+  hp: "HP",
+  attack: "Attack",
+  defense: "Defense",
+  "special-attack": "Sp. Attack",
+  "special-defense": "Sp. Defence",
+  speed: "Speed",
+};
+
 const modalVariants = {
   hidden: { y: "100%" },
   visible: {
@@ -142,7 +151,7 @@ export default function PokedexPanel({ pokemon, onClose }: PokedexPanelProps) {
                             className="inline-block w-4.5 h-4.5"
                           />
                         )}
-                        {statName}
+                        {statLabels[s.stat.name as keyof typeof statLabels] || s.stat.name}
                       </span>
                       <span className="font-bold">{s.base_stat}</span>
                     </div>
