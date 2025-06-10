@@ -1,7 +1,11 @@
 // components/PokedexPanel.tsx
 import type { Pokemon } from "@/types/pokemon";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCircleXmark } from "@fortawesome/free-solid-svg-icons";
+import {
+  faArrowsUpDown,
+  faCircleXmark,
+  faScaleBalanced,
+} from "@fortawesome/free-solid-svg-icons";
 import Image from "next/image";
 import typeColors from "@/utils/typeColors";
 import { motion } from "framer-motion";
@@ -77,21 +81,30 @@ export default function PokedexPanel({ pokemon, onClose }: PokedexPanelProps) {
         {/* Info Box */}
         <div className="bg-neutral-300/90 dark:bg-background/90 p-5 rounded-4xl text-sm space-y-2">
           <section className="grid grid-cols-1">
-            <div className="grid grid-cols-2 gap-1 text-center">
-              <div>
-                <strong>Height</strong>
-                <p className="style attribute mt-2">{pokemon.height / 10} m</p>
+            <div className="style dark:text-white rounded-2xl py-3 flex items-center text-base bg-gray-900">
+              <div className="flex items-center gap-2 flex-1 justify-center">
+                <FontAwesomeIcon icon={faScaleBalanced} />
+                <div className="text-sm">
+                  <p className="font-semibold">{pokemon.weight / 10} kg</p>
+                  <p className="text-xs text-gray-400">Weight</p>
+                </div>
               </div>
-              <div>
-                <strong>Weight</strong>
-                <p className="style attribute mt-2">{pokemon.weight / 10} kg</p>
+
+              <div className="border-x border-neutral-400 dark:border-neutral-700 h-8 mx-2"></div>
+
+              <div className="flex items-center gap-2 flex-1 justify-center">
+                <FontAwesomeIcon icon={faArrowsUpDown} />
+                <div className="text-sm">
+                  <p className="font-semibold">{pokemon.height / 10} m</p>
+                  <p className="text-xs text-gray-400">Height</p>
+                </div>
               </div>
             </div>
 
             <div className="flex justify-center mt-2">
               <strong>Ability</strong>
             </div>
-            <div className="grid grid-cols-2 gap-1 mt-2 text-center">
+            <div className="grid grid-cols-2 gap-1.5 mt-2 text-center">
               {pokemon.abilities.map((a) => (
                 <div key={a.ability.name}>
                   <p className="style attribute">{a.ability.name}</p>
