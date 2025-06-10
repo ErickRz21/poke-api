@@ -10,7 +10,7 @@ type PokemonCardProps = {
 
 export default function PokemonCard({ pokemon, onClick }: PokemonCardProps) {
   const { id, name, sprites } = pokemon;
-  const { ref, isVisible } = useInView({ threshold: 1 });
+  const { ref, isVisible } = useInView({ threshold: 0.5 });
 
   const typeBadges = pokemon.types.map((t) => {
     const typeName = t.type.name;
