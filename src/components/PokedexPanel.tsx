@@ -63,11 +63,11 @@ export default function PokedexPanel({ pokemon, onClose }: PokedexPanelProps) {
       animate="visible"
       exit="exit"
       variants={modalVariants}
-      className="fixed inset-0 sm:right-0 sm:inset-y-0 sm:w-[370px] w-full h-full bg-background/70 dark:bg-zinc-900/70 backdrop-blur-md shadow-lg z-50 duration-200 overflow-y-auto"
+      className="fixed inset-0 sm:right-0 sm:left-auto sm:ml-auto sm:mr-0 sm:inset-y-0 sm:w-[400px] w-full h-full bg-background/70 dark:bg-zinc-900/70 backdrop-blur-md shadow-lg z-50 duration-200 overflow-y-auto"
     >
       <button
         onClick={onClose}
-        className="absolute top-4 right-4 text-4xl text-neutral-300/90 dark:text-neutral-700/90 hover:text-red-500 duration-200 cursor-pointer"
+        className="absolute top-5 right-5 p-1 text-4xl text-neutral-300/90 dark:text-neutral-700/90 hover:text-red-500 duration-200 cursor-pointer"
         aria-label="Close"
       >
         <FontAwesomeIcon icon={faCircleXmark} />
