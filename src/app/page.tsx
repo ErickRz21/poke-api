@@ -22,7 +22,7 @@ export default function SearchPokemon() {
   console.log(selectedPokemon);
   return (
     <main>
-      <section className="m-5 md:m-10">
+      <section className="m-4">
         <div className="relative w-full max-w-xl">
           <input
             type="text"
@@ -44,7 +44,7 @@ export default function SearchPokemon() {
         </div>
       </section>
 
-      <section className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 m-5 md:m-10">
+      <section className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 m-4">
         {loading && (
           <div className="fixed inset-0 flex justify-center items-center z-50">
             <img

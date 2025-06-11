@@ -20,7 +20,7 @@ export default function PokemonCard({ pokemon, onClick }: PokemonCardProps) {
     return (
       <span
         key={typeName}
-        className={`text-sm px-2 py-1 rounded-3xl capitalize font-semibold ${colorClass}`}
+        className={`badge ${colorClass}`}
       >
         {typeName}
       </span>
