@@ -47,7 +47,7 @@ const modalVariants = {
   },
 };
 
-export default function PokedexPanel({ pokemon, onClose }: PokedexPanelProps) {
+export default function PokedexPanel({ pokemon, onClose, show }: PokedexPanelProps) {
   const [useFallback, setUseFallback] = useState(false);
   useEffect(() => {
     // Reset fallback when new Pokémon is selected
@@ -56,6 +56,20 @@ export default function PokedexPanel({ pokemon, onClose }: PokedexPanelProps) {
   const gifUrl = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/${pokemon.id}.gif`;
   const fallbackUrl = pokemon.sprites.front_default;
 
+  useEffect(() => {
+    const isMobile = window.innerWidth < 640; // Tailwind's `sm` breakpoint
+
+    if (show && isMobile) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [show]);
+  
   return (
     <motion.section
       key="pokedex-panel"
